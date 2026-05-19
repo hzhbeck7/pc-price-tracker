@@ -1,0 +1,10 @@
+{
+  "name": "pc-price-tracker",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PC配件自动比价工具",
+  "scripts": {
+    "check": "node price_checker.js",
+    "dashboard": "node generate_dashboard.js"
+  }
+}
