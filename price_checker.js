@@ -70,8 +70,8 @@ async function main() {
     console.log(`▶ ${comp.name}（${comp.keyword}）`);
     const platforms = {};
 
-    const qty      = comp.qty      ?? 1;
-    const minPrice = comp.minRatio != null ? comp.refPrice * comp.minRatio : 0;
+    const qty        = comp.qty      ?? 1;
+    const priceFloor = comp.minRatio != null ? comp.refPrice * comp.minRatio / qty : 0;
 
     for (const platform of PLATFORMS) {
       process.stdout.write(`  ${platform}... `);
@@ -82,8 +82,7 @@ async function main() {
         if (isBlacklisted(r.title)) return false;
         const p = parsePrice(r.price);
         if (p === null) return false;
-        // qty>1时，单条最低价也要在合理范围内（refPrice/qty * minRatio）
-        if (p < minPrice / qty) return false;
+        if (p < priceFloor) return false;
         return true;
       });
 
