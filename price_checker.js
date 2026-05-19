@@ -8,20 +8,21 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = path.join(__dirname, 'data', 'prices.json');
 
 // ── 配件清单 ───────────────────────────────────────────────
-// qty: 数量，价格会自动乘以此值（默认1）
-// minRatio: 最低可接受价格 = refPrice * minRatio，低于此视为异常/二手
+// qty:      数量，价格会自动乘以此值（默认1）
+// minRatio: 最低可接受价格 = refPrice * minRatio，低于此视为异常/二手（默认0.5）
+// maxRatio: 最高可接受价格 = refPrice * maxRatio，高于此视为套餐/捆绑（默认1.5）
 const COMPONENTS = [
-  { name: 'CPU',   keyword: '英特尔 i5-14400F 盒装',              refPrice: 1000, minRatio: 0.65 },
-  { name: '主板',  keyword: '华硕TUF GAMING B660M-PLUS重炮手 新品', refPrice: 580,  minRatio: 0.70 },
-  { name: '显卡',  keyword: '映众RTX5060曜夜 8G',                 refPrice: 2299, minRatio: 0.80 },
-  { name: '内存',  keyword: '金士顿Beast DDR4 3200 16G*2 套装',    refPrice: 1210, minRatio: 0.65, qty: 2 },
-  { name: '硬盘',  keyword: '七彩虹CN600 1T SSD M.2',             refPrice: 820,  minRatio: 0.50 },
-  { name: '散热',  keyword: '九州风神AK620 数显 CPU散热器',         refPrice: 280,  minRatio: 0.55 },
-  { name: '电源',  keyword: '利民TG650W 金牌全模组 电源',           refPrice: 250,  minRatio: 0.60 },
-  { name: '机箱',  keyword: '乔斯伯T7 机箱',                      refPrice: 770,  minRatio: 0.65 },
-  { name: '定制线', keyword: '纯黑 模组线 电源定制线',              refPrice: 100,  minRatio: 0.30 },
-  { name: '棱镜',  keyword: '棱镜9lROX3 ARGB风扇',                refPrice: 60,   minRatio: 0.40 },
-  { name: '延长线', keyword: 'aijs晶森 ARGB显卡供电延长线',         refPrice: 60,   minRatio: 0.30 },
+  { name: 'CPU',    keyword: 'i5-14400F 盒装',           refPrice: 1000, minRatio: 0.65 },
+  { name: '主板',   keyword: '华硕B660M重炮手 主板',       refPrice: 580,  minRatio: 0.70 },
+  { name: '显卡',   keyword: '映众5060曜夜',              refPrice: 2299, minRatio: 0.80 },
+  { name: '内存',   keyword: '金士顿Beast DDR4 3200 16G', refPrice: 1210, minRatio: 0.65, qty: 2 },
+  { name: '硬盘',   keyword: '七彩虹CN600 1TB',           refPrice: 820,  minRatio: 0.50 },
+  { name: '散热',   keyword: '九州风神AK620 数显',         refPrice: 280,  minRatio: 0.55 },
+  { name: '电源',   keyword: '利民TG650W 金牌',           refPrice: 250,  minRatio: 0.60 },
+  { name: '机箱',   keyword: '乔思伯T7 机箱',              refPrice: 770,  minRatio: 0.65 },
+  { name: '定制线', keyword: '纯黑模组线 电源',            refPrice: 100,  minRatio: 0.30, maxRatio: 2.5 },
+  { name: '棱镜',   keyword: '棱镜9lROX3 ARGB',           refPrice: 60,   minRatio: 0.40, maxRatio: 3.0 },
+  { name: '延长线', keyword: 'aijs晶森显卡延长线',         refPrice: 60,   minRatio: 0.30, maxRatio: 3.0 },
 ];
 
 const PLATFORMS = ['jd', 'taobao'];
@@ -71,18 +72,22 @@ async function main() {
     const platforms = {};
 
     const qty        = comp.qty      ?? 1;
-    const priceFloor = comp.minRatio != null ? comp.refPrice * comp.minRatio / qty : 0;
+    const minRatio   = comp.minRatio ?? 0.5;
+    const maxRatio   = comp.maxRatio ?? 1.5;
+    const priceFloor = comp.refPrice * minRatio / qty;
+    const priceCeil  = comp.refPrice * maxRatio / qty;
 
     for (const platform of PLATFORMS) {
       process.stdout.write(`  ${platform}... `);
       const rows = runOpencli(platform, comp.keyword);
 
-      // 过滤黑名单 + 价格异常（太低=二手/套装混入）
+      // 过滤黑名单 + 价格异常（太低=二手，太高=套餐/捆绑）
       const valid = rows.filter(r => {
         if (isBlacklisted(r.title)) return false;
         const p = parsePrice(r.price);
         if (p === null) return false;
         if (p < priceFloor) return false;
+        if (p > priceCeil) return false;
         return true;
       });
 
