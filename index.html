@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC配件比价看板</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; background: #f4f6f9; color: #333; }
+  a { color: #e74c3c; text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .header { background: linear-gradient(135deg, #c0392b, #e74c3c); color: #fff; padding: 24px 20px 20px; }
+  .header h1 { font-size: 1.4rem; margin-bottom: 8px; }
+  .header .updated { font-size: 0.8rem; opacity: .8; margin-bottom: 16px; }
+
+  .kpi-row { display: flex; gap: 12px; flex-wrap: wrap; }
+  .kpi { background: rgba(255,255,255,.15); border-radius: 10px; padding: 12px 16px; flex: 1; min-width: 130px; }
+  .kpi .label { font-size: 0.72rem; opacity: .85; margin-bottom: 4px; }
+  .kpi .value { font-size: 1.5rem; font-weight: 700; }
+  .kpi .sub   { font-size: 0.8rem; margin-top: 4px; }
+
+  .diff { font-weight: 600; }
+  .diff.down { color: #2ecc71; }
+  .diff.up   { color: #ff6b6b; }
+  .diff.neutral { color: rgba(255,255,255,.7); }
+  .dist-min  { font-size: 0.8rem; color: rgba(255,255,255,.85); }
+  .dist-min.green { color: #2ecc71; font-weight: 700; }
+
+  .section { max-width: 900px; margin: 20px auto; padding: 0 12px; }
+  .card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.07); overflow: hidden; margin-bottom: 20px; }
+  .card-title { padding: 14px 16px 0; font-size: 1rem; font-weight: 700; color: #555; border-bottom: 1px solid #f0f0f0; padding-bottom: 10px; margin-bottom: 0; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { background: #fafafa; padding: 10px 12px; text-align: left; font-weight: 600; color: #666; border-bottom: 2px solid #eee; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f2f2f2; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #fef9f9; }
+
+  td.comp-name { min-width: 90px; }
+  .keyword { font-size: 0.72rem; color: #999; margin-top: 2px; }
+  td.price { min-width: 110px; }
+  td.price.best { background: #f0fff4; }
+  td.na { color: #ccc; }
+  .price a { font-weight: 700; font-size: 1rem; }
+  .shop { font-size: 0.7rem; color: #999; margin-top: 3px; }
+  .badge { display: inline-block; background: #2ecc71; color: #fff; font-size: 0.65rem; padding: 1px 5px; border-radius: 4px; margin-left: 4px; vertical-align: middle; }
+  td.ref { color: #888; font-size: 0.85rem; min-width: 100px; }
+
+  .chart-wrap { padding: 16px; }
+  canvas { max-height: 220px; }
+
+  .hist-row { display: flex; align-items: center; gap: 12px; padding: 10px 16px; border-bottom: 1px solid #f4f4f4; font-size: 0.87rem; }
+  .hist-row:last-child { border-bottom: none; }
+  .hist-row.latest { background: #fef9f9; }
+  .hist-date { color: #888; flex: 1; }
+  .hist-price { font-weight: 700; }
+  .tag { background: #e74c3c; color: #fff; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px; }
+  .no-history { padding: 20px; color: #aaa; text-align: center; font-size: 0.9rem; }
+
+  .total-row td { font-weight: 700; background: #fff8f8; font-size: 0.95rem; }
+
+  @media (max-width: 600px) {
+    .kpi-row { gap: 8px; }
+    .kpi { min-width: 120px; }
+    table { font-size: 0.8rem; }
+    th, td { padding: 8px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>🖥️ PC配件比价看板</h1>
+  <div class="updated">最后更新：2026-05-19 11:29:23</div>
+  <div class="kpi-row">
+    <div class="kpi">
+      <div class="label">今日最低总价</div>
+      <div class="value">¥5895</div>
+      <div class="sub"><span class="diff neutral">首次记录</span></div>
+    </div>
+    <div class="kpi">
+      <div class="label">参考总价</div>
+      <div class="value">¥7429</div>
+      <div class="sub">
+        <span class="diff down">
+          ▼¥1534
+        </span>
+      </div>
+    </div>
+    <div class="kpi">
+      <div class="label">历史最低总价</div>
+      <div class="value">¥5895</div>
+      <div class="sub"><span class="dist-min green">已达历史最低！</span></div>
+    </div>
+    <div class="kpi">
+      <div class="label">查询次数</div>
+      <div class="value">1</div>
+      <div class="sub">次</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+
+  <!-- 配件价格表 -->
+  <div class="card">
+    <div class="card-title">📦 各配件今日最低价</div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>配件</th>
+            <th>京东</th>
+            <th>淘宝天猫</th>
+            <th>参考价</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+        <td class="comp-name"><strong>CPU</strong><div class="keyword">英特尔14400F</div></td>
+        <td class="price">
+          <a href="https://item.jd.com/10117412465686.html" target="_blank">¥1069</a>
+          
+          <div class="shop">0+条评价2400+人种草尔英旗舰店</div>
+        </td>
+        <td class="price best">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWZSdNVi28bKqW94Wkhxsw3zwgtR35NHoAW6xoLuphoFwS&amp;spm=a21n57.1.item.6" target="_blank">¥911.042</a>
+          <span class="badge">最低</span>
+          <div class="shop">10年老店intel英特尔旗舰店</div>
+        </td>
+        <td class="ref">¥1000 <span class="diff down">
+             ▼¥88.95799999999997
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>主板</strong><div class="keyword">华硕B660M重炮手</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10077396487474.html" target="_blank">¥635</a>
+          <span class="badge">最低</span>
+          <div class="shop"></div>
+        </td>
+        <td class="price">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWMzXkJ4BKJDKFBAvBHdAmJZqFBmpTcBEV9FB8Q3tPxYAu&amp;spm=a21n57.1.item.5" target="_blank">¥1515.5182</a>
+          
+          <div class="shop">12年老店玩侠电竞旗舰店</div>
+        </td>
+        <td class="ref">¥580 <span class="diff up">
+             ▲¥55
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>显卡</strong><div class="keyword">映众5060曜夜</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10213856138533.html" target="_blank">¥2339</a>
+          <span class="badge">最低</span>
+          <div class="shop"></div>
+        </td>
+        <td class="price">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWRXc8gwzM1G1R9M85HwDVqbNGsrje9P6FqJVEtjQdgDws&amp;spm=a21n57.1.item.6" target="_blank">¥2479.53</a>
+          
+          <div class="shop">12年老店和瑟数码电竞旗舰店</div>
+        </td>
+        <td class="ref">¥2299 <span class="diff up">
+             ▲¥40
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>内存</strong><div class="keyword">金士顿Beast OC3200 16G套装</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10056344704250.html" target="_blank">¥909</a>
+          <span class="badge">最低</span>
+          <div class="shop">501000+人看过金士顿科频专卖店</div>
+        </td>
+        <td class="price">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWWQe5d3PSUn68i3A2hUqVkk6e4EHaG9yQpzXaBht1D8Wx&amp;spm=a21n57.1.item.4" target="_blank">¥1880.05</a>
+          
+          <div class="shop">回头客1000万天猫国际自营全球超级店</div>
+        </td>
+        <td class="ref">¥1210 <span class="diff down">
+             ▼¥301
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>硬盘</strong><div class="keyword">七彩虹CN600 1T</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10215109169382.html" target="_blank">¥494.5</a>
+          <span class="badge">最低</span>
+          <div class="shop"></div>
+        </td>
+        <td class="price">
+          <a href="https://click.simba.taobao.com/cc_im?p=%C6%DF%B2%CA%BA%E7CN600%201T&amp;s=1490357740&amp;k=2425&amp;e=ON9tzbYp0Sr8kLg%2Bp%2B0YmkkfJCvSQkzBfMzFUIWpGL%2Bjd4Ee%2F%2BD8VeFa8V5kBut8o5WnrnufkRF6c1VSXqCWNSbdeXFNoFf9BNDM0fJodXyQ8gfcFPhjmdkt5hUIX%2Fq5gBMW1eukg%2FNnbzJhsDSThXG5YVon9OGmJuxGZ5VWF7%2FlnaF7hAEd%2F0oA2w6kOP0%2BVu47cGV8QZmFlVNrW6xQXA0uZEPARAqQgIzymPNhsrbAXgnkAeVJa1UZyj9uNNnUcrf5HHLsh7z8YK0N5z7BDoXDtwtWvqRFQWb5pQKIP1pqc9o85yyn5RHV2q%2Bqq1pGpeYD2q138TI2Be2M511FAd9DJ9m%2Bau9gn2yxggycEgfeWBXvm%2BqCFVYxcZyAz2ExnYSTr4zmDe86nsSZ5BAo19ysdyfnQsRCnp3%2Fe3myO8nI3y8Dv2TGNmzKTODv3hyZSC8dDDy20HdQ7oZ8S%2FpH2XwJNsgliUVzUNC4Vc6qElNVWCLjbWncgFlDEbMZYVppHLi%2Fjt7cP6hJtySPOq55yJsK8a4pOTSlD9mscicohFtJNpXl4N1gai4ZX70TzR66u8GnBs%2BYHh4s3Y1gH17YPodaPDEAD8nfdfEJS5S7ionYRhcHbHR55mzIPOGnsLYZWph07AI%2Bjg8hJD1IiY30Tp4s6hD0Ofmuvemch2A7NKJK7j0b8q4I%2FFkGSZEfh5OXGEzOZhbwJiBN2VFPqB6KoTsrTm3rUPUexHz8wCCCI76esdW%2FVOyVmeHw0lOniBd8R0xMphecz8AqxU1yHhxB%2BR4tQDPPsCKuIHC%2BQUL%2BMco3NtrMuRRNtwXIavBwlnrKqx92UzXCigWA0LQOkU99enoyG3M6N2JuBhX%2BjkFoyzo4qOkXdhEDH%2F1mSPQQ33r%2B1xR52tkSEMGKZ0PU0CB8XxhuP1R%2F66YkgAVbzpVjhdI%2BXWpUN0cLT9tKw1ZyVik0LbkAEmd2w487jTlS4XNwryNmMLA8itaUQIUo3W8AOyXLivLYFzGhIUQhJMjw%2FaIKfRCOnLFEEFafK55d8zHJPivqOL5rC1XBnX%2BlAkDXjKXFkGRswhBDgm5AL2Vex%2FOloIB2EEFO3UGofyHsuR%2B2gNwoPOQ%2FbrICUfkv3aZQ6owYrnq6sxOMW0yGtKpfjIjZdOxvDwt60vhhGynSZjBV7G3XVpQcq%2FGn%2BgenStxAPn0wPudg3XgSWOax67%2BpJ8giqRqnuOyiNlMa1%2Fc12HPtkwu7nvwoN9TuUPvOp%2BtGRTnFVINL1zNM3izdjWAfXtg%2Bh1o8MQAPyd918QlLlLuKidhGFwdsdHnmbMg84aewthm8UZfK1R0Scbl1xWfvOaK0CEGegyv9JUAoPibFEmNn423HWC38Gi0abUzwcvb3W7uWvfwt8NEt75%2BvOFCJXgS4IFoIrUPBjh9X0D7uekLPuzy6lI%2FjBEUFnYx8uSuWngb%2BK7Oue0TcaO6HND70yD8ZRwWIagZJXY%2Bg1Z5PyI3Ie3kiBrHG5J0FyQJY4qfd9M9yN4vN9MAU%2B5u%2Bymsqik9N3LWLZNla6J8cYfU9i8CmdppOMIy4GVt%2FyjY7gQoMcWxONC8hBh8y3aI2MRQRU8uZjKZCgj81AYTCsTjpD5C0JVy1zc2WguYMddbIuUWJN3HJhukp9TxSIsKxOOkPkLQlOk9mD7%2FxH0nZLeYVCF%2F6uWu9qGRSd0IniJDZeNiQMkBcYuo3IMRRTxYfRmgACZmLL%2F4aT8iTofjwFaiOLvkS0NsygrfpsIcVlAHwClHZLiO26bgV8eqSmCVnBMjdq7kT86Ktt0ljK027h8W1JKgyiNSXey5Y6fypw%2FIV6DLzPT4QGS%2Fv%2F2RC1ycoZfe12JZg%2FubrSfjzEi9b8maZrU7sv3Qx4pxbLNNZLBNksgogsPyt5mVhRQqOXRIfJZdt0AcTxcjWhrlP6MWE6RcV%2FLs0kxFkC9vYNGPNF%2BqWbXNayV3d4xK3CSfKhqqsK3P0IfnwqwdDgXBEDzFTMpUVfUeX1ReuoUenJtEy63B59j5urPtmOnBD1CBAWJjKPJjaCa83eR3vbEZuKEDOJhpiYRw4klfaIoH%2FPDap2Ir8%2FO%2FlkOlqsqG6N2%2FXm5a9%2FC3w0S3vcWVCOl%2FC653nywsPvoiTDnnJN6ctLEMqtQEhkAWw3zizzs2gNSMVINUbEpPO4XI%2B%2B5UpANlrP%2FRiErZkhB7FiZOQ5ijHm9mYIXas7nF2mJFKFFo60cn3y6Mz2yYSmIUsX0na1NZbE5LeRUHXiKNfGeCdKoSgQlNUJ%2Bc8dnYweeHD8hXoMvM9PkSGXz41rjqsJIIXAQjclJPJNDQu8RJ1FosN3LCC1aMd0OthM%2FuvcH6HWjwxAA%2FJ3zcbYT0QP%2Btfc7KOMFyL3m6Xuit2ErkvuCcNTM0Ba6EJZujQ%2FRD6FJ2Tg7vNKXY8CA%3D%3D&amp;mm_sceneid=1_0_3226659000_0&amp;spm=a21n57.1.item.1" target="_blank">¥22962</a>
+          
+          <div class="shop">七彩虹电脑旗舰店</div>
+        </td>
+        <td class="ref">¥820 <span class="diff down">
+             ▼¥325.5
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>散热</strong><div class="keyword">九州风神AK620数显</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10111410735554.html" target="_blank">¥198</a>
+          <span class="badge">最低</span>
+          <div class="shop"></div>
+        </td>
+        <td class="price">
+          <a href="https://click.simba.taobao.com/cc_im?p=%BE%C5%D6%DD%B7%E7%C9%F1AK620%CA%FD%CF%D4&amp;s=697578506&amp;k=2317&amp;e=oWWjqNW4LqDz%2FR4b6Pvpe76ZufX3vKLV3m2eVK3tFQ5UM8yuGtU1DWOfbNzklvcaKBBtpXJWeZNEla3F5Mgi52D9MSDUIF39Cz3CEZcj8wsv3A7xDY5Q7NDU1Lptlgn6mbp6LMDgA%2FeExmG1ojbnYShL8Gl3aOYRK1B9tE5ZfNeLrO7kYy7dbASNcbb1je2DqeazyIPCoNCXUzP3fjollshk%2BfggeRImfuAavtw9HF6x%2FqJMDVc4gszcq%2FuA%2BrnfS6sgJvtvXOeFTB%2B1p8a%2BwpcMozZRxKhzDQJNQu03kBskSwY9gVBDJrcKRHDAhhLKTkPhZxvc%2FU%2FloZRlMZEv6HZ0xCQ%2BfLRSv6RpdFxluvbmoaq6URA1VIOH6pxX%2BEOyqVk1feYN%2BXcnRWNrTcxFyC6rNMdyluxvjA65rVVJMcnot8u7FgHLr4%2FqkYsPUTq5gCiMi43fD76cGLJEau56UV2t9Isp0qEaDWYalzcrAMSsOLqSZKecK6pPER3seRhV%2BPvULVjKJbcVJCfNvNwr7rsI3U7YQcM97L9VAuOcI5B27sZfb2crPfeGqgcchsyN52f1dRq1p8BxpTgeurkbWghyk2QMEp299lZshjgkgdrvI7zqlQ2OmInQD2LPTkpWMGI%2F0LLfnzDURA16o7kMdStx%2FfutzQRju6pmiPmwCjo4sXt%2BkRC8PJtFZh%2BPDJf8caXlyoMuIiYJCS65Fo1FRCKokGaNuWyXDGFDOCFdTQf2VmyGOCSB2uE0Xh32yQaaJNPs8RM7oOE4cW5IADthMgMhIFOJmiMhP0XsNU8zQOvdVepNVtNbEG92A%2F%2B60VilHHOlzXJZ7IW38HGAi9PxqdOun1jqXjrtsahp7Znh224bcaI2wr6YLQKembLoWBuBHvsnKiMcRCgc3qT1Q6VKHRacO0AjaEnyyY3SBeCy8bF3JNYl1Zkis%2Bs%2Fr8kiFwesh1i0ZusP4HINd18Iz0tW69beE9gT56b0Qp3Oi%2FqzisPDdBktyOeG%2BnVVOQWWONl%2FHI0bNgJyEh22LbCH%2BHqSF8N0Nqp0mj%2BerYfJuD7rFLvd2unWEWfWQWqCowzpGrAlaTnX64QAh5SuSWRx04ckcpbFb%2BEyktDEF%2FR7bnsQxxyCQdkhHU5481TKx6EGFzOGlHeLByWWAp63SmTaktEkrAZjMG8vREwaaiYeOGsNWmGh02v8Ck8RaGRD%2BAo4xK%2FgbTcp%2BxMcQgHomaCQwWi9Run%2FDmnICIldwDktpk3GkBTzSeSs8RV1KZqn78c1u5EuEKEkH80b6bVclK%2FyZdifzuzbt2iEZT4hPZmrxVXOyU6VfqRQz4BgKYc34MZO9BdVtydxNwUfWZ6bqNtqTfL7o34kjkJX6xSIQItp4GXoiBZv95EQtmsm8bmFuZBrOS5VSOlh6eYsPWLCh4EophsYpd2MkIlDKR%2BLIxOYHCuAt%2F7Tk1bj5IkngCB6n01qcTj0JKtUxAZIDgz7qjvV3HJnSzCchpVkYPf%2F0jgFuWDO%2BRnKvbaz47zzmKJOZmcOm52Bgut%2FL4Daj3tBR9PAWWXNfmaRvU5DniB5kUiOpbUx9Hdc2wRLi80wO0FH08BZZc1%2BtqVtDWRqG%2Fk0HYrBji39xPO%2FG02lGSZZR6t6J82SbB%2BkTdIGQNG0v6MCdTmy1R3s59T0AouE0jxoUO9lecJXIxZC5GCOMrdg%2FMa9UkZMIXgAlnBfiNYAKUnXKW2QfqpZg8BlYc0e9WM67U43X1qkM4Bx3%2BbR3RJpbabhWQdPskqmdV%2BZiloq7cvLEhVxNWDwAfoHJ6Qi%2FLpGPjkc0YSa5NIXaE73DEQGA6hHsW0vFkITsA0j8UcqnnU06%2FwD4BiCTpGUO10KWK86ZlkYhSOqCOcEYjUlzB1TIkhzGVZYtre8SMQb5Vrsourz6Y5oPqN917JeZu6uuAU7iDN8Qq%2FYxCBWIBC68ZE5m8%2FyHFQ6KpHmp7oILh7ePxgjB500OO0YIrFMxNc77e7f%2B4DTwdIC8e6UC6jIuggSRdA5Uab9OhMJaAK%2FjOD1euTuI5cda5lB8RHsr9u%2BjZlGCp4XkqRTGuSnWq6Ec4C7IqpEPeGMxhvvg%2Bzm45TCLathwZZxdYaqGj%2FdtXKDyfQRKevLakfZQdOJhYa4pB%2F7IdV2IP94IXFoJMJZvusjSJBXBUtOhYK5euyMwpvpIiU5MtbGaejJy2N90zKLZ0vVf2xh6fnW3I0FXUGRvnZmKHsxP8nvNew2EML4E5B9Eol%2FwSzb%2B8im334kjkJX6xSI3Tqw9OBkQh0FDTPXLrcF5huG4smSVGzEJ%2BeW18UKQHQ%3D&amp;mm_sceneid=1_0_8011115737_0&amp;spm=a21n57.1.item.5" target="_blank">¥3609</a>
+          
+          <div class="shop">九州风神卓信宇专卖店</div>
+        </td>
+        <td class="ref">¥280 <span class="diff down">
+             ▼¥82
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>电源</strong><div class="keyword">利民TG650W金牌全模组</div></td>
+        <td class="price">
+          <a href="https://item.jd.com/100060590057.html" target="_blank">¥259</a>
+          
+          <div class="shop">倍利民Thermalright京东自营旗舰店</div>
+        </td>
+        <td class="price best">
+          <a href="https://click.simba.taobao.com/cc_im?p=%C0%FB%C3%F1TG650W%BD%F0%C5%C6%C8%AB%C4%A3%D7%E9&amp;s=238997721&amp;k=2169&amp;e=qtCDhBvA3Zo5V9Zvubm%2F%2B9nHSBKK%2FwPx6plQFyT3US0nWOqHE6Q8ihkRXtQEuSlkpPpOzDsvpgWVUqOlWuMQFPbmJ5bDC1fpswrRq%2BI4iBjuRrzF5U7ZsDwzxJWxWCbCCiVZo%2FMACttZGTZv7%2Bz4FzFrClJs%2BYvU3Y9VroiJC1UEPw84VXVTKnXb%2FT75YfYRpN%2F2hYHaQMbB07k1wPAqtORa7xyMy1Lb8cupuD8GPUt5WbqIn69CZuQT9MrMCQs085heNxmptayzd1yFRhStkEdSArmKZw1gpAGt%2BiIu%2FV4VEx6str%2FuAJ6IEF4fE1XBMuZiMuPMgtI5WTgVYzZ%2F0IB6ste0O3%2FnaOTcbFQ6mSDCru2OoKGsXU8kHUpTi915tmuLO%2Fb15xol9pKzPEgcrt3EKQ1ZJtyAgrs7pTdZRKFKcuzui9DCL4GkqbV91CvwxRnTVwxTvclpnK4Q7w096XPltNpBVI3mme9ldSyvCrOuoFwcJ0EaGAVkFZbeiDh6%2B4rcHnupZHa6isqRt%2BOntKy3IDO2fwknIriSBpdl%2Bj0GT2gLCkkA9LHoiEerC%2BQPEoelZ3BQQJLp%2BfSYqX%2BVOhJMtBT3QZUtrTSGrmP2RYNqFuAKkh00cInZPD%2FDqRoTVCrGvVR2DGTt%2BxXgmlCoBhodfp97wKN%2FU9fPtPUcav9woUQ7BZkq6SvJ6nqOD9veqkE6e0DuQwNCGI99JcAgCqFjpHPdL5KZQo49MdaOHDI%2FVrY4Q2Mj%2BAm7zsLvk5h0nVjd8liQJs5Lu%2BzF7fmvHxY9GQPnCHvAPT0rbqp%2FpdqaPLMR%2Bo88VknRiPFUHrOyXtcKqlA5SOxegdgsT8B%2FKtf%2B%2FygVy0R%2BwNV2LrMXcCU4i5CK8NZu8EnDQoqesvkzQ8H3MWpd6J8IunCtRbGlQTb18p3iMHug6wObzF%2F0ySZ%2Bw8TdBcX2NynRdsENTXMDs9eaYMDGF4sXOxCrT8lGptuzgA6vziYCgeVylpins5Ds5Mu5XYy1mvOt0q1X8b1MbZeAgHSve3dfBUxsGoaK7ZowbBe98FvpFFeHGwUuDrosdu2BFRic9WT1mSs%2Bmh7j9AVBDsr%2B7gkNR2%2B5dDJz4SHLHCpvIUNkLBWeKpDpRaIYNssAFM9FbLHoiEerC%2BQPEoelZ3BQQJLp%2BfSYqX%2BVOhJMtBT3QZUtrTSGrmP2RYOlBNv8v%2B0kJMCPEUuk1Z4jJEWQMDBD%2FVxZLHph7y5wLjg3%2BhdGvNZ9nMLIjAm%2BfORoTDZBSLGkpODjTjxaV8EtHKJbphLTJzb5LEE6J3kt5rYmUp9QdZGO3hrdVMQrCAMzsrSnaBnCHZ%2BtZ%2Be9DnfEblGvKOHaLoo9CGZ9FZ%2Fp%2FXlHh4nZ%2B1jtZMpMhJr0UgDOI1iCh5Ng%2FprNLI8pGZ8YtZZNWkE%2B1FhzbbtR5z%2BxHRj2MrK213S3Fj0ZA%2BcIe8A5im%2BmdCFZkL0bDoysEyqXlx0JKJq%2Fx6wWPRkD5wh7wBUYz5Nsm62WBSBpJc7ZdPLPZnR3E%2FaosJvGyzEJoKfzzJiAiEj57xmH4bF5QR1sLu9GTQbZVG4YCK2dAKIRGkjPj6jUjNtWlgi9FyGxQXvG6%2FYPm%2Btd6pVZnn%2FMgdqvdu4UO2sAHY0PlJXFHYb0mRmcwrNiI9qMSlatm38W4aQHNjlStw%2FXu45R8OZXArEnkdWyRhdhmFFphTgIQCwEIBWi6WAZIoZ2kq9zsLtbze9d0JIZhNxqigwatg6B9qUh9LOkEX1B9HDRAYTE%2BkbACsR5tI4C9SIQZqN5X1GrF3LhVBo7xjAkdI6TR%2B7FsVmcUaSWLZhIBcUj3bAluXNVzLYjNJjXCZJTIXgMh9TJ3zrPlzB26QdmpG6k6gE2E%2BKukc5W5Ll%2FwZtUhgjA7NJOS1EftClXyE3%2B7%2B5FuQf26KFtZ841d6SDuwezpWu0GNK74DD4eCJ4aoW7ojxrf8951cGnbmnPI05P%2FT5V9YX0%2BJgMRftUTMuRlR1EjXliCNEa55hEvz%2Bd%2BYu41GoUDvWS0TwfiMYkS81nIfmzizuEMm9aBR5IuqE72%2BSY0PcV4jdnbJnvZXUsrwqzsoDon1jRGcowtBs6dmHeJtJ%2B793iKKWukmzcBxJXOLZq%2B4Fu9MlJcvbxUJatW%2F5sWS5fROSOc3jtvey21U0vnQ%3D%3D&amp;mm_sceneid=1_0_1939570024_0&amp;spm=a21n57.1.item.2" target="_blank">¥250.476</a>
+          <span class="badge">最低</span>
+          <div class="shop">thermalright睿谊专卖店</div>
+        </td>
+        <td class="ref">¥250 <span class="diff up">
+             ▲¥0.4759999999999991
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>机箱</strong><div class="keyword">乔斯伯T7</div></td>
+        <td class="price best">
+          <a href="https://item.jd.com/10102045575434.html" target="_blank">¥118</a>
+          <span class="badge">最低</span>
+          <div class="shop">00+人看过广告爱国者电脑硬件旗舰店</div>
+        </td>
+        <td class="price">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWV2RNwAHHHbvB5CyUJWHrH3NfPbgEzTxbWz4JjNjYoYgd&amp;spm=a21n57.1.item.6" target="_blank">¥129.264</a>
+          
+          <div class="shop">回头客10万塔菲克旗舰店</div>
+        </td>
+        <td class="ref">¥770 <span class="diff down">
+             ▼¥652
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>定制线</strong><div class="keyword">纯黑电源定制线模组线</div></td>
+        <td class="price">
+          <a href="https://item.jd.com/10074693238935.html" target="_blank">¥119</a>
+          
+          <div class="shop">京兆信息（GIGA-MEGA）官方旗舰店</div>
+        </td>
+        <td class="price best">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWWetg7FCpyuwQG3phboJFV9EHzLsHRtqXTE2EsHmqSbJJ&amp;spm=a21n57.1.item.5" target="_blank">¥10.94</a>
+          <span class="badge">最低</span>
+          <div class="shop">SQMOD旗舰店</div>
+        </td>
+        <td class="ref">¥100 <span class="diff down">
+             ▼¥89.06
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>棱镜</strong><div class="keyword">棱镜9lROX3 ARGB</div></td>
+        <td class="price">
+          <a href="https://item.jd.com/10131695966873.html" target="_blank">¥14.9</a>
+          
+          <div class="shop">9首购礼金2元1万+人看过酷月旗舰店</div>
+        </td>
+        <td class="price best">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWLsSxKg6TyJca13inx3UdUGwGwFCqDMawaS7HzEz28Wte&amp;spm=a21n57.1.item.2" target="_blank">¥8.61</a>
+          <span class="badge">最低</span>
+          <div class="shop">12年老店庄承数码专营店</div>
+        </td>
+        <td class="ref">¥60 <span class="diff down">
+             ▼¥51.39
+           </span></td>
+      </tr>
+<tr>
+        <td class="comp-name"><strong>延长线</strong><div class="keyword">aijs晶森ARGB显卡供电延长线</div></td>
+        <td class="price">
+          <a href="https://item.jd.com/10217878023393.html" target="_blank">¥55</a>
+          
+          <div class="shop">包邮39人看过100%好评晶森官方旗舰店</div>
+        </td>
+        <td class="price best">
+          <a href="https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWV7chnXn8erYYWDmJpESv151VYoh3jCfSxHqMVLVbScHz&amp;spm=a21n57.1.item.2" target="_blank">¥20.4</a>
+          <span class="badge">最低</span>
+          <div class="shop">佐乐嘉兰趣专卖店</div>
+        </td>
+        <td class="ref">¥60 <span class="diff down">
+             ▼¥39.6
+           </span></td>
+      </tr>
+          <tr class="total-row">
+            <td>合计</td>
+            <td colspan="2">最低总价 ¥5895</td>
+            <td>¥7429</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- 历史趋势图 -->
+  
+
+  <!-- 历史记录列表 -->
+  <div class="card">
+    <div class="card-title">🕐 查询历史</div>
+    <p class="no-history">还没有历史记录，查询第二次后这里会显示对比趋势。</p>
+  </div>
+
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

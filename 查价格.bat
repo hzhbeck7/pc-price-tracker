@@ -28,7 +28,7 @@ if %errorlevel% neq 0 (
 
 echo.
 echo Pushing to GitHub Pages...
-git add dashboard.html data\prices.json
+git add index.html data\prices.json
 git commit -m "price update %DATE%"
 git push
 

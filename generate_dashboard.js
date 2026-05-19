@@ -276,7 +276,7 @@ new Chart(document.getElementById('priceChart'), {
 </body>
 </html>`;
 
-  const outPath = path.join(baseDir, 'dashboard.html');
+  const outPath = path.join(baseDir, 'index.html');
   writeFileSync(outPath, html, 'utf-8');
 }
 
