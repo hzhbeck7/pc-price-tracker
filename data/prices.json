@@ -236,5 +236,199 @@
       }
     ],
     "total_min": 5894.967999999998
+  },
+  {
+    "date": "2026-05-19",
+    "time": "11:47:31",
+    "items": [
+      {
+        "name": "CPU",
+        "keyword": "英特尔 i5-14400F 盒装",
+        "refPrice": 1000,
+        "platforms": {
+          "jd": {
+            "price": 1068.9,
+            "title": "尔英英特尔CPU处理器全新盒装正品酷睿i5-14600KF 14490F 14400F盒装搭尔英主板套装游戏办公生产 【",
+            "shop": "0+条评价2400+人种草尔英旗舰店",
+            "url": "https://item.jd.com/10117412465686.html"
+          },
+          "taobao": {
+            "price": 1255.56,
+            "title": "英特尔i5 12490F/12600kF/14600KF微星b760迫击炮电脑主板cpu套装",
+            "shop": "15年老店微星旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 1068.9,
+        "min_platform": "jd"
+      },
+      {
+        "name": "主板",
+        "keyword": "华硕TUF GAMING B660M-PLUS重炮手 新品",
+        "refPrice": 580,
+        "platforms": {
+          "jd": {
+            "price": 668,
+            "title": "华硕Asus/华硕TUF GAMING B660M PLUS WIFI/E/AD4重炮手电竞主板 1700 华硕TUF ",
+            "shop": "",
+            "url": "https://item.jd.com/10216117372372.html"
+          },
+          "taobao": {
+            "price": 1259.16,
+            "title": "ROG魔导士RX LP三模矮光轴游戏机械键盘 68键RGB背光电竞游戏华硕",
+            "shop": "15年老店ASUS华硕旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 668,
+        "min_platform": "jd"
+      },
+      {
+        "name": "显卡",
+        "keyword": "映众RTX5060曜夜 8G",
+        "refPrice": 2299,
+        "platforms": {
+          "taobao": {
+            "price": 2516.43,
+            "title": "映众电竞叛客索泰 RTX5060 8G 台式机电脑游戏直播独立国补显卡",
+            "shop": "12年老店和瑟数码电竞旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 2516.43,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "内存",
+        "keyword": "金士顿Beast DDR4 3200 16G*2 套装",
+        "refPrice": 1210,
+        "platforms": {
+          "jd": {
+            "price": 2275.8,
+            "unitPrice": 1137.9,
+            "qty": 2,
+            "title": "广告金士顿内存条ddr4 2666台式机电脑内存条2400内存条2133 4代内存3200 DRAM运行16g内存条DD",
+            "shop": "",
+            "url": "https://item.jd.com/10151206535325.html"
+          },
+          "taobao": {
+            "price": 3760.1,
+            "unitPrice": 1880.05,
+            "qty": 2,
+            "title": "【自营】金士顿官方DDR4 3200 16GX2套装台式机内存条游戏电竞diy",
+            "shop": "回头客1000万天猫国际自营全球超级店",
+            "url": ""
+          }
+        },
+        "min_price": 2275.8,
+        "min_platform": "jd"
+      },
+      {
+        "name": "硬盘",
+        "keyword": "七彩虹CN600 1T SSD M.2",
+        "refPrice": 820,
+        "platforms": {
+          "taobao": {
+            "price": 22962,
+            "title": "七彩虹m2nvme高速固态硬盘CN600笔记本256g1tb台式电脑装机pcie3",
+            "shop": "七彩虹电脑旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 22962,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "散热",
+        "keyword": "九州风神AK620 数显 CPU散热器",
+        "refPrice": 280,
+        "platforms": {
+          "taobao": {
+            "price": 3609,
+            "title": "九州风神AK620 G2风冷散热器CPU风扇台式电脑双塔6热管数显散热器",
+            "shop": "九州风神卓信宇专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 3609,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "电源",
+        "keyword": "利民TG650W 金牌全模组 电源",
+        "refPrice": 250,
+        "platforms": {
+          "taobao": {
+            "price": 250.48,
+            "title": "利民TR-TGFX650金牌650W/750w电源itx主机550W全模组SFX电源850W",
+            "shop": "thermalright睿谊专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 250.48,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "机箱",
+        "keyword": "乔斯伯T7 机箱",
+        "refPrice": 770,
+        "platforms": {
+          "taobao": {
+            "price": 8492,
+            "title": "分形工艺机箱Meshify2 Mini紧凑型下置MATX主板白色侧透台式安静",
+            "shop": "5年老店fractaldesign旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 8492,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "定制线",
+        "keyword": "纯黑 模组线 电源定制线",
+        "refPrice": 100,
+        "platforms": {
+          "taobao": {
+            "price": 37.92,
+            "title": "电源定制模组延长线DIY包网编织机箱主板24pin加长显卡8P cpu转接",
+            "shop": "14年老店酷风数码专营店",
+            "url": ""
+          }
+        },
+        "min_price": 37.92,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "棱镜",
+        "keyword": "棱镜9lROX3 ARGB风扇",
+        "refPrice": 60,
+        "platforms": {
+          "taobao": {
+            "price": 29.61,
+            "title": "利民TL-C12B-S V3 X3三联包无限镜面PWM12cm机箱风扇黑色ARGB三代",
+            "shop": "thermalright睿谊专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 29.61,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "延长线",
+        "keyword": "aijs晶森 ARGB显卡供电延长线",
+        "refPrice": 60,
+        "platforms": {
+          "taobao": {
+            "price": 20.4,
+            "title": "电脑机箱主板24pin加长线 线 显卡8Pin cpu8P转接供电延长线 线白",
+            "shop": "佐乐嘉兰趣专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 20.4,
+        "min_platform": "taobao"
+      }
+    ],
+    "total_min": 41930.54000000001
   }
 ]
