@@ -8,18 +8,20 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DATA_FILE = path.join(__dirname, 'data', 'prices.json');
 
 // ── 配件清单 ───────────────────────────────────────────────
+// qty: 数量，价格会自动乘以此值（默认1）
+// minRatio: 最低可接受价格 = refPrice * minRatio，低于此视为异常/二手
 const COMPONENTS = [
-  { name: 'CPU',  keyword: '英特尔14400F',             refPrice: 1000 },
-  { name: '主板', keyword: '华硕B660M重炮手',           refPrice: 580  },
-  { name: '显卡', keyword: '映众5060曜夜',              refPrice: 2299 },
-  { name: '内存', keyword: '金士顿Beast OC3200 16G套装', refPrice: 1210 },
-  { name: '硬盘', keyword: '七彩虹CN600 1T',            refPrice: 820  },
-  { name: '散热', keyword: '九州风神AK620数显',          refPrice: 280  },
-  { name: '电源', keyword: '利民TG650W金牌全模组',       refPrice: 250  },
-  { name: '机箱', keyword: '乔斯伯T7',                  refPrice: 770  },
-  { name: '定制线', keyword: '纯黑电源定制线模组线',     refPrice: 100  },
-  { name: '棱镜',  keyword: '棱镜9lROX3 ARGB',          refPrice: 60   },
-  { name: '延长线', keyword: 'aijs晶森ARGB显卡供电延长线', refPrice: 60 },
+  { name: 'CPU',   keyword: '英特尔 i5-14400F 盒装',              refPrice: 1000, minRatio: 0.65 },
+  { name: '主板',  keyword: '华硕TUF GAMING B660M-PLUS重炮手 新品', refPrice: 580,  minRatio: 0.70 },
+  { name: '显卡',  keyword: '映众RTX5060曜夜 8G',                 refPrice: 2299, minRatio: 0.80 },
+  { name: '内存',  keyword: '金士顿Beast DDR4 3200 16G*2 套装',    refPrice: 1210, minRatio: 0.65, qty: 2 },
+  { name: '硬盘',  keyword: '七彩虹CN600 1T SSD M.2',             refPrice: 820,  minRatio: 0.50 },
+  { name: '散热',  keyword: '九州风神AK620 数显 CPU散热器',         refPrice: 280,  minRatio: 0.55 },
+  { name: '电源',  keyword: '利民TG650W 金牌全模组 电源',           refPrice: 250,  minRatio: 0.60 },
+  { name: '机箱',  keyword: '乔斯伯T7 机箱',                      refPrice: 770,  minRatio: 0.65 },
+  { name: '定制线', keyword: '纯黑 模组线 电源定制线',              refPrice: 100,  minRatio: 0.30 },
+  { name: '棱镜',  keyword: '棱镜9lROX3 ARGB风扇',                refPrice: 60,   minRatio: 0.40 },
+  { name: '延长线', keyword: 'aijs晶森 ARGB显卡供电延长线',         refPrice: 60,   minRatio: 0.30 },
 ];
 
 const PLATFORMS = ['jd', 'taobao'];
@@ -68,12 +70,23 @@ async function main() {
     console.log(`▶ ${comp.name}（${comp.keyword}）`);
     const platforms = {};
 
+    const qty      = comp.qty      ?? 1;
+    const minPrice = comp.minRatio != null ? comp.refPrice * comp.minRatio : 0;
+
     for (const platform of PLATFORMS) {
       process.stdout.write(`  ${platform}... `);
       const rows = runOpencli(platform, comp.keyword);
 
-      // 过滤黑名单，取最低价
-      const valid = rows.filter(r => !isBlacklisted(r.title));
+      // 过滤黑名单 + 价格异常（太低=二手/套装混入）
+      const valid = rows.filter(r => {
+        if (isBlacklisted(r.title)) return false;
+        const p = parsePrice(r.price);
+        if (p === null) return false;
+        // qty>1时，单条最低价也要在合理范围内（refPrice/qty * minRatio）
+        if (p < minPrice / qty) return false;
+        return true;
+      });
+
       if (valid.length === 0) {
         console.log('无有效结果');
         continue;
@@ -87,16 +100,20 @@ async function main() {
         return pa <= pb ? a : b;
       });
 
-      const price = parsePrice(best.price);
-      if (price === null) { console.log('价格解析失败'); continue; }
+      const unitPrice = parsePrice(best.price);
+      if (unitPrice === null) { console.log('价格解析失败'); continue; }
+      const totalPrice = +(unitPrice * qty).toFixed(2);
 
       platforms[platform] = {
-        price,
-        title: (best.title ?? '').slice(0, 60),
-        shop:  (best.shop  ?? '').slice(0, 30),
-        url:   best.url ?? '',
+        price:     totalPrice,
+        unitPrice: qty > 1 ? unitPrice : undefined,
+        qty:       qty > 1 ? qty : undefined,
+        title:     (best.title ?? '').slice(0, 60),
+        shop:      (best.shop  ?? '').slice(0, 30),
+        url:       best.url ?? '',
       };
-      console.log(`¥${price} | ${best.shop ?? ''}`);
+      const qtyNote = qty > 1 ? ` (单条¥${unitPrice}×${qty})` : '';
+      console.log(`¥${totalPrice}${qtyNote} | ${best.shop ?? ''}`);
     }
 
     // 本配件各平台最低价

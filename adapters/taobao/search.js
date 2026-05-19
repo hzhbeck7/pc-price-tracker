@@ -77,11 +77,17 @@ cli({
               card.querySelector('.shopname');
             const shop = (shopEl?.textContent || '').trim().slice(0, 40);
 
-            // 链接
-            const linkEl = card.querySelector('a[href*="item.taobao.com"], a[href*="detail.tmall.com"]') ||
-              card.querySelector('a');
-            let url = linkEl?.href || '';
+            // 链接：只取商品详情页，排除店铺页/redirect页
+            const allLinks = Array.from(card.querySelectorAll('a[href]'));
+            const productLink = allLinks.find(a => {
+              const h = a.href || '';
+              return (h.includes('item.taobao.com') || h.includes('detail.tmall.com')) &&
+                     !h.includes('store.taobao.com') && !h.includes('shop.taobao.com');
+            });
+            let url = productLink?.href || '';
             if (url.startsWith('//')) url = 'https:' + url;
+            // 去掉 simba 等跟踪重定向链接
+            if (!url.includes('item.taobao.com') && !url.includes('detail.tmall.com')) url = '';
 
             results.push({ title, price, shop, url });
           } catch (_) {}
