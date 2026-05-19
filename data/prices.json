@@ -1,1 +1,240 @@
-[]
+[
+  {
+    "date": "2026-05-19",
+    "time": "11:29:23",
+    "items": [
+      {
+        "name": "CPU",
+        "keyword": "英特尔14400F",
+        "refPrice": 1000,
+        "platforms": {
+          "jd": {
+            "price": 1069,
+            "title": "尔英英特尔CPU处理器全新盒装正品酷睿i5-14600KF 14490F 14400F盒装搭尔英主板套装游戏办公生产 【",
+            "shop": "0+条评价2400+人种草尔英旗舰店",
+            "url": "https://item.jd.com/10117412465686.html"
+          },
+          "taobao": {
+            "price": 911.042,
+            "title": "intel/英特尔i5 12490F/14600KF/Ultra5系列盒装处理器CPU旗舰店",
+            "shop": "10年老店intel英特尔旗舰店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWZSdNVi28bKqW94Wkhxsw3zwgtR35NHoAW6xoLuphoFwS&spm=a21n57.1.item.6"
+          }
+        },
+        "min_price": 911.042,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "主板",
+        "keyword": "华硕B660M重炮手",
+        "refPrice": 580,
+        "platforms": {
+          "jd": {
+            "price": 635,
+            "title": "华硕TUF GAMING B560M B660M B760M-PLUS WIFI 重炮手 华硕重炮手TUF B660M-",
+            "shop": "",
+            "url": "https://item.jd.com/10077396487474.html"
+          },
+          "taobao": {
+            "price": 1515.5182,
+            "title": "【百补+国补】华硕B650MB850M重炮手吹雪搭金士顿NV3 1T硬盘套装",
+            "shop": "12年老店玩侠电竞旗舰店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWMzXkJ4BKJDKFBAvBHdAmJZqFBmpTcBEV9FB8Q3tPxYAu&spm=a21n57.1.item.5"
+          }
+        },
+        "min_price": 635,
+        "min_platform": "jd"
+      },
+      {
+        "name": "显卡",
+        "keyword": "映众5060曜夜",
+        "refPrice": 2299,
+        "platforms": {
+          "jd": {
+            "price": 2339,
+            "title": "映众（Inno3D）RTX5060 8G /曜夜/映雪/超级冰龙 2K三角洲无畏契约3A游戏直播/剪辑 AI养虾 台式主",
+            "shop": "",
+            "url": "https://item.jd.com/10213856138533.html"
+          },
+          "taobao": {
+            "price": 2479.53,
+            "title": "映众电竞叛客索泰 RTX5060 8G 台式机电脑游戏直播独立国补显卡",
+            "shop": "12年老店和瑟数码电竞旗舰店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWRXc8gwzM1G1R9M85HwDVqbNGsrje9P6FqJVEtjQdgDws&spm=a21n57.1.item.6"
+          }
+        },
+        "min_price": 2339,
+        "min_platform": "jd"
+      },
+      {
+        "name": "内存",
+        "keyword": "金士顿Beast OC3200 16G套装",
+        "refPrice": 1210,
+        "platforms": {
+          "jd": {
+            "price": 909,
+            "title": "广告金士顿（Kingston）3200台式机内存条FURY Beast野兽系列 内存条 骇客神条 DDR4 Beast野",
+            "shop": "501000+人看过金士顿科频专卖店",
+            "url": "https://item.jd.com/10056344704250.html"
+          },
+          "taobao": {
+            "price": 1880.05,
+            "title": "【自营】金士顿官方DDR4 3200 16GX2套装台式机内存条游戏电竞diy",
+            "shop": "回头客1000万天猫国际自营全球超级店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWWQe5d3PSUn68i3A2hUqVkk6e4EHaG9yQpzXaBht1D8Wx&spm=a21n57.1.item.4"
+          }
+        },
+        "min_price": 909,
+        "min_platform": "jd"
+      },
+      {
+        "name": "硬盘",
+        "keyword": "七彩虹CN600 1T",
+        "refPrice": 820,
+        "platforms": {
+          "jd": {
+            "price": 494.5,
+            "title": "广告七彩虹橘猫ME700 1TB SSD硬盘固态 M.2接口 CN600 512G 适用游戏笔记本台式机NVME固态硬盘",
+            "shop": "",
+            "url": "https://item.jd.com/10215109169382.html"
+          },
+          "taobao": {
+            "price": 22962,
+            "title": "七彩虹m2nvme高速固态硬盘CN600笔记本256g1tb台式电脑装机pcie3",
+            "shop": "七彩虹电脑旗舰店",
+            "url": "https://click.simba.taobao.com/cc_im?p=%C6%DF%B2%CA%BA%E7CN600%201T&s=1490357740&k=2425&e=ON9tzbYp0Sr8kLg%2Bp%2B0YmkkfJCvSQkzBfMzFUIWpGL%2Bjd4Ee%2F%2BD8VeFa8V5kBut8o5WnrnufkRF6c1VSXqCWNSbdeXFNoFf9BNDM0fJodXyQ8gfcFPhjmdkt5hUIX%2Fq5gBMW1eukg%2FNnbzJhsDSThXG5YVon9OGmJuxGZ5VWF7%2FlnaF7hAEd%2F0oA2w6kOP0%2BVu47cGV8QZmFlVNrW6xQXA0uZEPARAqQgIzymPNhsrbAXgnkAeVJa1UZyj9uNNnUcrf5HHLsh7z8YK0N5z7BDoXDtwtWvqRFQWb5pQKIP1pqc9o85yyn5RHV2q%2Bqq1pGpeYD2q138TI2Be2M511FAd9DJ9m%2Bau9gn2yxggycEgfeWBXvm%2BqCFVYxcZyAz2ExnYSTr4zmDe86nsSZ5BAo19ysdyfnQsRCnp3%2Fe3myO8nI3y8Dv2TGNmzKTODv3hyZSC8dDDy20HdQ7oZ8S%2FpH2XwJNsgliUVzUNC4Vc6qElNVWCLjbWncgFlDEbMZYVppHLi%2Fjt7cP6hJtySPOq55yJsK8a4pOTSlD9mscicohFtJNpXl4N1gai4ZX70TzR66u8GnBs%2BYHh4s3Y1gH17YPodaPDEAD8nfdfEJS5S7ionYRhcHbHR55mzIPOGnsLYZWph07AI%2Bjg8hJD1IiY30Tp4s6hD0Ofmuvemch2A7NKJK7j0b8q4I%2FFkGSZEfh5OXGEzOZhbwJiBN2VFPqB6KoTsrTm3rUPUexHz8wCCCI76esdW%2FVOyVmeHw0lOniBd8R0xMphecz8AqxU1yHhxB%2BR4tQDPPsCKuIHC%2BQUL%2BMco3NtrMuRRNtwXIavBwlnrKqx92UzXCigWA0LQOkU99enoyG3M6N2JuBhX%2BjkFoyzo4qOkXdhEDH%2F1mSPQQ33r%2B1xR52tkSEMGKZ0PU0CB8XxhuP1R%2F66YkgAVbzpVjhdI%2BXWpUN0cLT9tKw1ZyVik0LbkAEmd2w487jTlS4XNwryNmMLA8itaUQIUo3W8AOyXLivLYFzGhIUQhJMjw%2FaIKfRCOnLFEEFafK55d8zHJPivqOL5rC1XBnX%2BlAkDXjKXFkGRswhBDgm5AL2Vex%2FOloIB2EEFO3UGofyHsuR%2B2gNwoPOQ%2FbrICUfkv3aZQ6owYrnq6sxOMW0yGtKpfjIjZdOxvDwt60vhhGynSZjBV7G3XVpQcq%2FGn%2BgenStxAPn0wPudg3XgSWOax67%2BpJ8giqRqnuOyiNlMa1%2Fc12HPtkwu7nvwoN9TuUPvOp%2BtGRTnFVINL1zNM3izdjWAfXtg%2Bh1o8MQAPyd918QlLlLuKidhGFwdsdHnmbMg84aewthm8UZfK1R0Scbl1xWfvOaK0CEGegyv9JUAoPibFEmNn423HWC38Gi0abUzwcvb3W7uWvfwt8NEt75%2BvOFCJXgS4IFoIrUPBjh9X0D7uekLPuzy6lI%2FjBEUFnYx8uSuWngb%2BK7Oue0TcaO6HND70yD8ZRwWIagZJXY%2Bg1Z5PyI3Ie3kiBrHG5J0FyQJY4qfd9M9yN4vN9MAU%2B5u%2Bymsqik9N3LWLZNla6J8cYfU9i8CmdppOMIy4GVt%2FyjY7gQoMcWxONC8hBh8y3aI2MRQRU8uZjKZCgj81AYTCsTjpD5C0JVy1zc2WguYMddbIuUWJN3HJhukp9TxSIsKxOOkPkLQlOk9mD7%2FxH0nZLeYVCF%2F6uWu9qGRSd0IniJDZeNiQMkBcYuo3IMRRTxYfRmgACZmLL%2F4aT8iTofjwFaiOLvkS0NsygrfpsIcVlAHwClHZLiO26bgV8eqSmCVnBMjdq7kT86Ktt0ljK027h8W1JKgyiNSXey5Y6fypw%2FIV6DLzPT4QGS%2Fv%2F2RC1ycoZfe12JZg%2FubrSfjzEi9b8maZrU7sv3Qx4pxbLNNZLBNksgogsPyt5mVhRQqOXRIfJZdt0AcTxcjWhrlP6MWE6RcV%2FLs0kxFkC9vYNGPNF%2BqWbXNayV3d4xK3CSfKhqqsK3P0IfnwqwdDgXBEDzFTMpUVfUeX1ReuoUenJtEy63B59j5urPtmOnBD1CBAWJjKPJjaCa83eR3vbEZuKEDOJhpiYRw4klfaIoH%2FPDap2Ir8%2FO%2FlkOlqsqG6N2%2FXm5a9%2FC3w0S3vcWVCOl%2FC653nywsPvoiTDnnJN6ctLEMqtQEhkAWw3zizzs2gNSMVINUbEpPO4XI%2B%2B5UpANlrP%2FRiErZkhB7FiZOQ5ijHm9mYIXas7nF2mJFKFFo60cn3y6Mz2yYSmIUsX0na1NZbE5LeRUHXiKNfGeCdKoSgQlNUJ%2Bc8dnYweeHD8hXoMvM9PkSGXz41rjqsJIIXAQjclJPJNDQu8RJ1FosN3LCC1aMd0OthM%2FuvcH6HWjwxAA%2FJ3zcbYT0QP%2Btfc7KOMFyL3m6Xuit2ErkvuCcNTM0Ba6EJZujQ%2FRD6FJ2Tg7vNKXY8CA%3D%3D&mm_sceneid=1_0_3226659000_0&spm=a21n57.1.item.1"
+          }
+        },
+        "min_price": 494.5,
+        "min_platform": "jd"
+      },
+      {
+        "name": "散热",
+        "keyword": "九州风神AK620数显",
+        "refPrice": 280,
+        "platforms": {
+          "jd": {
+            "price": 198,
+            "title": "广告九州风神冰立方AK500S/620黑色 数显版 CPU风冷电脑散热器 ARGB 温度显示/6热管/高性能风扇~白色 ",
+            "shop": "",
+            "url": "https://item.jd.com/10111410735554.html"
+          },
+          "taobao": {
+            "price": 3609,
+            "title": "九州风神AK620 G2风冷散热器CPU风扇台式电脑双塔6热管数显散热器",
+            "shop": "九州风神卓信宇专卖店",
+            "url": "https://click.simba.taobao.com/cc_im?p=%BE%C5%D6%DD%B7%E7%C9%F1AK620%CA%FD%CF%D4&s=697578506&k=2317&e=oWWjqNW4LqDz%2FR4b6Pvpe76ZufX3vKLV3m2eVK3tFQ5UM8yuGtU1DWOfbNzklvcaKBBtpXJWeZNEla3F5Mgi52D9MSDUIF39Cz3CEZcj8wsv3A7xDY5Q7NDU1Lptlgn6mbp6LMDgA%2FeExmG1ojbnYShL8Gl3aOYRK1B9tE5ZfNeLrO7kYy7dbASNcbb1je2DqeazyIPCoNCXUzP3fjollshk%2BfggeRImfuAavtw9HF6x%2FqJMDVc4gszcq%2FuA%2BrnfS6sgJvtvXOeFTB%2B1p8a%2BwpcMozZRxKhzDQJNQu03kBskSwY9gVBDJrcKRHDAhhLKTkPhZxvc%2FU%2FloZRlMZEv6HZ0xCQ%2BfLRSv6RpdFxluvbmoaq6URA1VIOH6pxX%2BEOyqVk1feYN%2BXcnRWNrTcxFyC6rNMdyluxvjA65rVVJMcnot8u7FgHLr4%2FqkYsPUTq5gCiMi43fD76cGLJEau56UV2t9Isp0qEaDWYalzcrAMSsOLqSZKecK6pPER3seRhV%2BPvULVjKJbcVJCfNvNwr7rsI3U7YQcM97L9VAuOcI5B27sZfb2crPfeGqgcchsyN52f1dRq1p8BxpTgeurkbWghyk2QMEp299lZshjgkgdrvI7zqlQ2OmInQD2LPTkpWMGI%2F0LLfnzDURA16o7kMdStx%2FfutzQRju6pmiPmwCjo4sXt%2BkRC8PJtFZh%2BPDJf8caXlyoMuIiYJCS65Fo1FRCKokGaNuWyXDGFDOCFdTQf2VmyGOCSB2uE0Xh32yQaaJNPs8RM7oOE4cW5IADthMgMhIFOJmiMhP0XsNU8zQOvdVepNVtNbEG92A%2F%2B60VilHHOlzXJZ7IW38HGAi9PxqdOun1jqXjrtsahp7Znh224bcaI2wr6YLQKembLoWBuBHvsnKiMcRCgc3qT1Q6VKHRacO0AjaEnyyY3SBeCy8bF3JNYl1Zkis%2Bs%2Fr8kiFwesh1i0ZusP4HINd18Iz0tW69beE9gT56b0Qp3Oi%2FqzisPDdBktyOeG%2BnVVOQWWONl%2FHI0bNgJyEh22LbCH%2BHqSF8N0Nqp0mj%2BerYfJuD7rFLvd2unWEWfWQWqCowzpGrAlaTnX64QAh5SuSWRx04ckcpbFb%2BEyktDEF%2FR7bnsQxxyCQdkhHU5481TKx6EGFzOGlHeLByWWAp63SmTaktEkrAZjMG8vREwaaiYeOGsNWmGh02v8Ck8RaGRD%2BAo4xK%2FgbTcp%2BxMcQgHomaCQwWi9Run%2FDmnICIldwDktpk3GkBTzSeSs8RV1KZqn78c1u5EuEKEkH80b6bVclK%2FyZdifzuzbt2iEZT4hPZmrxVXOyU6VfqRQz4BgKYc34MZO9BdVtydxNwUfWZ6bqNtqTfL7o34kjkJX6xSIQItp4GXoiBZv95EQtmsm8bmFuZBrOS5VSOlh6eYsPWLCh4EophsYpd2MkIlDKR%2BLIxOYHCuAt%2F7Tk1bj5IkngCB6n01qcTj0JKtUxAZIDgz7qjvV3HJnSzCchpVkYPf%2F0jgFuWDO%2BRnKvbaz47zzmKJOZmcOm52Bgut%2FL4Daj3tBR9PAWWXNfmaRvU5DniB5kUiOpbUx9Hdc2wRLi80wO0FH08BZZc1%2BtqVtDWRqG%2Fk0HYrBji39xPO%2FG02lGSZZR6t6J82SbB%2BkTdIGQNG0v6MCdTmy1R3s59T0AouE0jxoUO9lecJXIxZC5GCOMrdg%2FMa9UkZMIXgAlnBfiNYAKUnXKW2QfqpZg8BlYc0e9WM67U43X1qkM4Bx3%2BbR3RJpbabhWQdPskqmdV%2BZiloq7cvLEhVxNWDwAfoHJ6Qi%2FLpGPjkc0YSa5NIXaE73DEQGA6hHsW0vFkITsA0j8UcqnnU06%2FwD4BiCTpGUO10KWK86ZlkYhSOqCOcEYjUlzB1TIkhzGVZYtre8SMQb5Vrsourz6Y5oPqN917JeZu6uuAU7iDN8Qq%2FYxCBWIBC68ZE5m8%2FyHFQ6KpHmp7oILh7ePxgjB500OO0YIrFMxNc77e7f%2B4DTwdIC8e6UC6jIuggSRdA5Uab9OhMJaAK%2FjOD1euTuI5cda5lB8RHsr9u%2BjZlGCp4XkqRTGuSnWq6Ec4C7IqpEPeGMxhvvg%2Bzm45TCLathwZZxdYaqGj%2FdtXKDyfQRKevLakfZQdOJhYa4pB%2F7IdV2IP94IXFoJMJZvusjSJBXBUtOhYK5euyMwpvpIiU5MtbGaejJy2N90zKLZ0vVf2xh6fnW3I0FXUGRvnZmKHsxP8nvNew2EML4E5B9Eol%2FwSzb%2B8im334kjkJX6xSI3Tqw9OBkQh0FDTPXLrcF5huG4smSVGzEJ%2BeW18UKQHQ%3D&mm_sceneid=1_0_8011115737_0&spm=a21n57.1.item.5"
+          }
+        },
+        "min_price": 198,
+        "min_platform": "jd"
+      },
+      {
+        "name": "电源",
+        "keyword": "利民TG650W金牌全模组",
+        "refPrice": 250,
+        "platforms": {
+          "jd": {
+            "price": 259,
+            "title": "利民（thermalright）额定650W TR-TG650 金牌全模组 全日系电解电容 14CM小机身 ATX3.0",
+            "shop": "倍利民Thermalright京东自营旗舰店",
+            "url": "https://item.jd.com/100060590057.html"
+          },
+          "taobao": {
+            "price": 250.476,
+            "title": "利民TR-TGFX650金牌650W/750w电源itx主机550W全模组SFX电源850W",
+            "shop": "thermalright睿谊专卖店",
+            "url": "https://click.simba.taobao.com/cc_im?p=%C0%FB%C3%F1TG650W%BD%F0%C5%C6%C8%AB%C4%A3%D7%E9&s=238997721&k=2169&e=qtCDhBvA3Zo5V9Zvubm%2F%2B9nHSBKK%2FwPx6plQFyT3US0nWOqHE6Q8ihkRXtQEuSlkpPpOzDsvpgWVUqOlWuMQFPbmJ5bDC1fpswrRq%2BI4iBjuRrzF5U7ZsDwzxJWxWCbCCiVZo%2FMACttZGTZv7%2Bz4FzFrClJs%2BYvU3Y9VroiJC1UEPw84VXVTKnXb%2FT75YfYRpN%2F2hYHaQMbB07k1wPAqtORa7xyMy1Lb8cupuD8GPUt5WbqIn69CZuQT9MrMCQs085heNxmptayzd1yFRhStkEdSArmKZw1gpAGt%2BiIu%2FV4VEx6str%2FuAJ6IEF4fE1XBMuZiMuPMgtI5WTgVYzZ%2F0IB6ste0O3%2FnaOTcbFQ6mSDCru2OoKGsXU8kHUpTi915tmuLO%2Fb15xol9pKzPEgcrt3EKQ1ZJtyAgrs7pTdZRKFKcuzui9DCL4GkqbV91CvwxRnTVwxTvclpnK4Q7w096XPltNpBVI3mme9ldSyvCrOuoFwcJ0EaGAVkFZbeiDh6%2B4rcHnupZHa6isqRt%2BOntKy3IDO2fwknIriSBpdl%2Bj0GT2gLCkkA9LHoiEerC%2BQPEoelZ3BQQJLp%2BfSYqX%2BVOhJMtBT3QZUtrTSGrmP2RYNqFuAKkh00cInZPD%2FDqRoTVCrGvVR2DGTt%2BxXgmlCoBhodfp97wKN%2FU9fPtPUcav9woUQ7BZkq6SvJ6nqOD9veqkE6e0DuQwNCGI99JcAgCqFjpHPdL5KZQo49MdaOHDI%2FVrY4Q2Mj%2BAm7zsLvk5h0nVjd8liQJs5Lu%2BzF7fmvHxY9GQPnCHvAPT0rbqp%2FpdqaPLMR%2Bo88VknRiPFUHrOyXtcKqlA5SOxegdgsT8B%2FKtf%2B%2FygVy0R%2BwNV2LrMXcCU4i5CK8NZu8EnDQoqesvkzQ8H3MWpd6J8IunCtRbGlQTb18p3iMHug6wObzF%2F0ySZ%2Bw8TdBcX2NynRdsENTXMDs9eaYMDGF4sXOxCrT8lGptuzgA6vziYCgeVylpins5Ds5Mu5XYy1mvOt0q1X8b1MbZeAgHSve3dfBUxsGoaK7ZowbBe98FvpFFeHGwUuDrosdu2BFRic9WT1mSs%2Bmh7j9AVBDsr%2B7gkNR2%2B5dDJz4SHLHCpvIUNkLBWeKpDpRaIYNssAFM9FbLHoiEerC%2BQPEoelZ3BQQJLp%2BfSYqX%2BVOhJMtBT3QZUtrTSGrmP2RYOlBNv8v%2B0kJMCPEUuk1Z4jJEWQMDBD%2FVxZLHph7y5wLjg3%2BhdGvNZ9nMLIjAm%2BfORoTDZBSLGkpODjTjxaV8EtHKJbphLTJzb5LEE6J3kt5rYmUp9QdZGO3hrdVMQrCAMzsrSnaBnCHZ%2BtZ%2Be9DnfEblGvKOHaLoo9CGZ9FZ%2Fp%2FXlHh4nZ%2B1jtZMpMhJr0UgDOI1iCh5Ng%2FprNLI8pGZ8YtZZNWkE%2B1FhzbbtR5z%2BxHRj2MrK213S3Fj0ZA%2BcIe8A5im%2BmdCFZkL0bDoysEyqXlx0JKJq%2Fx6wWPRkD5wh7wBUYz5Nsm62WBSBpJc7ZdPLPZnR3E%2FaosJvGyzEJoKfzzJiAiEj57xmH4bF5QR1sLu9GTQbZVG4YCK2dAKIRGkjPj6jUjNtWlgi9FyGxQXvG6%2FYPm%2Btd6pVZnn%2FMgdqvdu4UO2sAHY0PlJXFHYb0mRmcwrNiI9qMSlatm38W4aQHNjlStw%2FXu45R8OZXArEnkdWyRhdhmFFphTgIQCwEIBWi6WAZIoZ2kq9zsLtbze9d0JIZhNxqigwatg6B9qUh9LOkEX1B9HDRAYTE%2BkbACsR5tI4C9SIQZqN5X1GrF3LhVBo7xjAkdI6TR%2B7FsVmcUaSWLZhIBcUj3bAluXNVzLYjNJjXCZJTIXgMh9TJ3zrPlzB26QdmpG6k6gE2E%2BKukc5W5Ll%2FwZtUhgjA7NJOS1EftClXyE3%2B7%2B5FuQf26KFtZ841d6SDuwezpWu0GNK74DD4eCJ4aoW7ojxrf8951cGnbmnPI05P%2FT5V9YX0%2BJgMRftUTMuRlR1EjXliCNEa55hEvz%2Bd%2BYu41GoUDvWS0TwfiMYkS81nIfmzizuEMm9aBR5IuqE72%2BSY0PcV4jdnbJnvZXUsrwqzsoDon1jRGcowtBs6dmHeJtJ%2B793iKKWukmzcBxJXOLZq%2B4Fu9MlJcvbxUJatW%2F5sWS5fROSOc3jtvey21U0vnQ%3D%3D&mm_sceneid=1_0_1939570024_0&spm=a21n57.1.item.2"
+          }
+        },
+        "min_price": 250.476,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "机箱",
+        "keyword": "乔斯伯T7",
+        "refPrice": 770,
+        "platforms": {
+          "jd": {
+            "price": 118,
+            "title": "爱国者V60 海景房机箱全景无立柱MATX高颜值240水冷台式电脑台式机主机箱 白色（显卡限长305mm）高颜值|1千+",
+            "shop": "00+人看过广告爱国者电脑硬件旗舰店",
+            "url": "https://item.jd.com/10102045575434.html"
+          },
+          "taobao": {
+            "price": 129.264,
+            "title": "【超广角循环电风扇】静音夹式小风扇usb桌面上小型充电款超长续航随身学生宿舍床上办公室迷你便携式婴儿",
+            "shop": "回头客10万塔菲克旗舰店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWV2RNwAHHHbvB5CyUJWHrH3NfPbgEzTxbWz4JjNjYoYgd&spm=a21n57.1.item.6"
+          }
+        },
+        "min_price": 118,
+        "min_platform": "jd"
+      },
+      {
+        "name": "定制线",
+        "keyword": "纯黑电源定制线模组线",
+        "refPrice": 100,
+        "platforms": {
+          "jd": {
+            "price": 119,
+            "title": "京兆信息模组电源线延长线套装12VHPWR模组线PCIE5.0硅胶包网尼龙编织显卡电源线 套装一：纯黑色 编织线F理线便",
+            "shop": "京兆信息（GIGA-MEGA）官方旗舰店",
+            "url": "https://item.jd.com/10074693238935.html"
+          },
+          "taobao": {
+            "price": 10.94,
+            "title": "适用海盗船电源模组线RMX系列模块线RM650X RM850x RM1000x全模组模组线定制模块线定制纯铜扁平线黑色白",
+            "shop": "SQMOD旗舰店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWWetg7FCpyuwQG3phboJFV9EHzLsHRtqXTE2EsHmqSbJJ&spm=a21n57.1.item.5"
+          }
+        },
+        "min_price": 10.94,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "棱镜",
+        "keyword": "棱镜9lROX3 ARGB",
+        "refPrice": 60,
+        "platforms": {
+          "jd": {
+            "price": 14.9,
+            "title": "广告酷月棱镜9代PRO台式电脑主机散热风扇海景房12CM神光同步argb大风量CPU水冷智能温控PWM超静音机箱风扇 棱",
+            "shop": "9首购礼金2元1万+人看过酷月旗舰店",
+            "url": "https://item.jd.com/10131695966873.html"
+          },
+          "taobao": {
+            "price": 8.61,
+            "title": "棱镜6Pro机箱散热风扇12CM神光同步5V3针ARGB棱镜4pro风扇灵镜V2",
+            "shop": "12年老店庄承数码专营店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWLsSxKg6TyJca13inx3UdUGwGwFCqDMawaS7HzEz28Wte&spm=a21n57.1.item.2"
+          }
+        },
+        "min_price": 8.61,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "延长线",
+        "keyword": "aijs晶森ARGB显卡供电延长线",
+        "refPrice": 60,
+        "platforms": {
+          "jd": {
+            "price": 55,
+            "title": "上海预定AIJS侧出 电脑延长线GPU8PIN加高版延长线 aijs一线连 ARGB神光同步 A扣 白色30cm常规pv",
+            "shop": "包邮39人看过100%好评晶森官方旗舰店",
+            "url": "https://item.jd.com/10217878023393.html"
+          },
+          "taobao": {
+            "price": 20.4,
+            "title": "电脑机箱主板24pin加长线 线 显卡8Pin cpu8P转接供电延长线 线白",
+            "shop": "佐乐嘉兰趣专卖店",
+            "url": "https://store.taobao.com/shop/view_shop.htm?appUid=RAzN8HWV7chnXn8erYYWDmJpESv151VYoh3jCfSxHqMVLVbScHz&spm=a21n57.1.item.2"
+          }
+        },
+        "min_price": 20.4,
+        "min_platform": "taobao"
+      }
+    ],
+    "total_min": 5894.967999999998
+  }
+]
