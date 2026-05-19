@@ -36,7 +36,7 @@ git push
 echo.
 echo ============================================
 echo   完成！手机打开以下链接查看最新价格：
-echo   https://你的GitHub用户名.github.io/pc-price-tracker/
+echo   https://hzhbeck7.github.io/pc-price-tracker/
 echo ============================================
 echo.
 pause
