@@ -430,5 +430,164 @@
       }
     ],
     "total_min": 41930.54000000001
+  },
+  {
+    "date": "2026-05-19",
+    "time": "12:25:09",
+    "items": [
+      {
+        "name": "CPU",
+        "keyword": "i5-14400F 盒装",
+        "refPrice": 1000,
+        "platforms": {
+          "jd": {
+            "price": 1068.9,
+            "title": "尔英英特尔CPU处理器全新盒装正品酷睿i5-14600KF 14490F 14400F盒装搭尔英主板套装游戏办公生产 【",
+            "shop": "0+条评价2400+人种草尔英旗舰店",
+            "url": "https://item.jd.com/10117412465686.html"
+          }
+        },
+        "min_price": 1068.9,
+        "min_platform": "jd"
+      },
+      {
+        "name": "主板",
+        "keyword": "华硕B660M重炮手 主板",
+        "refPrice": 580,
+        "platforms": {
+          "jd": {
+            "price": 634.9,
+            "title": "华硕TUF GAMING B560M B660M B760M-PLUS WIFI 重炮手 华硕重炮手TUF B660M-",
+            "shop": "",
+            "url": "https://item.jd.com/10077396487474.html"
+          }
+        },
+        "min_price": 634.9,
+        "min_platform": "jd"
+      },
+      {
+        "name": "显卡",
+        "keyword": "映众5060曜夜",
+        "refPrice": 2299,
+        "platforms": {
+          "jd": {
+            "price": 2338.9,
+            "title": "映众（Inno3D）RTX5060 8G /曜夜/映雪/超级冰龙 2K三角洲无畏契约3A游戏直播/剪辑 AI养虾 台式主",
+            "shop": "",
+            "url": "https://item.jd.com/10213856138533.html"
+          },
+          "taobao": {
+            "price": 2518.22,
+            "title": "映众RTX5060显卡 支持DLSS4.0 金属背板加固设计 台式机独立显卡",
+            "shop": "13年老店慧川电竞旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 2338.9,
+        "min_platform": "jd"
+      },
+      {
+        "name": "内存",
+        "keyword": "金士顿Beast DDR4 3200 16G",
+        "refPrice": 1210,
+        "platforms": {
+          "taobao": {
+            "price": 1097.38,
+            "unitPrice": 548.6915,
+            "qty": 2,
+            "title": "金士顿野兽 DDR4 3200频率 16G /32GB 内存条套装台式机",
+            "shop": "6年老店AMD金怡专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 1097.38,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "硬盘",
+        "keyword": "七彩虹CN600 1TB",
+        "refPrice": 820,
+        "platforms": {},
+        "min_price": null,
+        "min_platform": null
+      },
+      {
+        "name": "散热",
+        "keyword": "九州风神AK620 数显",
+        "refPrice": 280,
+        "platforms": {},
+        "min_price": null,
+        "min_platform": null
+      },
+      {
+        "name": "电源",
+        "keyword": "利民TG650W 金牌",
+        "refPrice": 250,
+        "platforms": {
+          "taobao": {
+            "price": 250.48,
+            "title": "利民TR-TGFX650金牌650W/750w电源itx主机550W全模组SFX电源850W",
+            "shop": "thermalright睿谊专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 250.48,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "机箱",
+        "keyword": "乔思伯T7 机箱",
+        "refPrice": 770,
+        "platforms": {},
+        "min_price": null,
+        "min_platform": null
+      },
+      {
+        "name": "定制线",
+        "keyword": "纯黑模组线 电源",
+        "refPrice": 100,
+        "platforms": {
+          "taobao": {
+            "price": 241.25,
+            "title": "先马金牌650W/750W/850W电脑模组电源ATX3黑钻XP黑洞电源台式机",
+            "shop": "14年老店先马旗舰店",
+            "url": ""
+          }
+        },
+        "min_price": 241.25,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "棱镜",
+        "keyword": "棱镜9lROX3 ARGB",
+        "refPrice": 60,
+        "platforms": {
+          "taobao": {
+            "price": 24.98,
+            "title": "棱镜6代PRO机箱风扇5V3针ARGB神光同步PWM温控调速12CM风扇黑白",
+            "shop": "12年老店庄承数码专营店",
+            "url": ""
+          }
+        },
+        "min_price": 24.98,
+        "min_platform": "taobao"
+      },
+      {
+        "name": "延长线",
+        "keyword": "aijs晶森显卡延长线",
+        "refPrice": 60,
+        "platforms": {
+          "taobao": {
+            "price": 19.98,
+            "title": "绿联PDU服务器电源线c13转c14主机电脑机房ups转换三孔三芯延长线",
+            "shop": "10年老店绿联中汉正光专卖店",
+            "url": ""
+          }
+        },
+        "min_price": 19.98,
+        "min_platform": "taobao"
+      }
+    ],
+    "total_min": 5676.769999999999
   }
 ]
